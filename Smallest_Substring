@@ -1,0 +1,36 @@
+from collections import defaultdict 
+def smallestsub(s): 
+      
+    l = len(s) 
+    dc = len(set([x for x in s])) 
+      
+    c = defaultdict(lambda: 0) 
+    ct = 0
+    z = 0
+    ml = l 
+
+    for j in range(l): 
+        c[s[j]] += 1
+          
+        if c[s[j]] == 1: 
+            ct += 1
+
+        if ct == dc: 
+            while c[s[z]] > 1: 
+                if c[s[z]] > 1: 
+                    c[s[z]] -= 1
+                      
+                z += 1
+                  
+            r = j - z + 1
+              
+            if ml > r: 
+                ml = r 
+                pos = z 
+
+    return str(s[pos: pos + ml]) 
+
+if __name__=='__main__': 
+      
+      s=input()
+      print( len(smallestsub(s)))
